@@ -1,4 +1,9 @@
 # Normal coordinate structural decomposition
+# Written by Peter Dahl
+# Malvankar & Batista Labs 
+# Yale University
+# New Haven, CT 06511
+
 set num_modes 15
 set modes_of_interest {1 2 3 8 9 14} 
 
@@ -47,34 +52,16 @@ proc NSD {difference_vector mode_number} {
 		incr cnt 
 	}	
 	
-	#set total_mass [vecsum $masses]
-	#set weights [vecscale [expr 1/$total_mass] $masses]
-	#puts $weights
 
 	set count 0
-	#set mass_idx 0
-	#set cnt 0
-	#puts "\n"
-	#puts "mode ${mode_number}"
 	foreach vec_val $mode_vector {
-		#puts "[lindex $difference_vector $count]	$vec_val"
-		#set mass [lindex $masses $mass_idx]
-		#set weight [expr $mass / $total_mass]
 		lappend mass_weight_vec $vec_val
 
 		incr count
-		#incr cnt
-		#if {[expr {fmod($count,3)}] == 0} {
-			#incr mass_idx
-			#set cnt 0
-		#}
+
 	}
 	
-	#set mass_weight_vec [vecscale [expr 1/[veclength $mass_weight_vec]] $mass_weight_vec]
-	#set mass_weighted_length [veclength $mass_weight_vec]
-	#set unit_mass_weight_vec [vecscale [expr 1/$mass_weighted_length] $mass_weight_vec]
 
-	#set proj [vecdot [vecscale [expr 1/$total_mass] $difference_vector] $mass_weight_vec]
 	set proj [vecdot $difference_vector $mass_weight_vec]
 	#set proj [expr abs($proj)]
 
@@ -89,11 +76,10 @@ set snapshot [lindex $argv 1]
 
 # Load the reference structure
 mol new copper_reference2.pdb
-#xy_plane_transformation {0}
+
 # Load the structure you wish to analyze
 mol new "${file_path}heme${heme_num}/heme${heme_num}_snap_${snapshot}.pdb"
 #mol new heme_distortions/hhcytc_porph.pdb
-#mol new /Users/peterdahl/Documents/BatistaLab/omcs_structure/omcs_2chains/temperature_dependence/fully_reduced/essential_modes/heme_atoms/covarience/center_hemes/distortion_analysis/heme${heme_num}_${clas}.pdb
 
 set nf [molinfo top get numframes]
 
