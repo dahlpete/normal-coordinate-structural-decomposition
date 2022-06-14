@@ -5,8 +5,10 @@ set atom_names "CHA CHB CHC CHD C1A C2A C3A C4A C1B C2B C3B C4B C1C C2C C3C C4C 
 #	mol addfile snapshots/omcs_ox_snap_$i.pdb waitfor all
 #}
 
+set base [lindex $argv 0]
+
 #set nf [molinfo top get numframes]
-set start [lindex $argv 0]
+set start 0
 set nf 40
 set end [expr $start + $nf]
 
