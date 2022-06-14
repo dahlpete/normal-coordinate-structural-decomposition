@@ -7,7 +7,7 @@ set atom_names "CHA CHB CHC CHD C1A C2A C3A C4A C1B C2B C3B C4B C1C C2C C3C C4C 
 
 #set nf [molinfo top get numframes]
 set start [lindex $argv 0]
-set nf 20
+set nf 40
 set end [expr $start + $nf]
 
 for {set frm $start} {$frm < $end} {incr frm} {
